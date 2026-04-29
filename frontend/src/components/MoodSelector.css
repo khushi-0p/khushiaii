@@ -1,0 +1,101 @@
+.mood-selector { margin-bottom: 40px; }
+
+.mood-selector__title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.mood-selector__subtitle {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.mood-selector__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* ─── Mood Button ─── */
+.mood-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition);
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+.mood-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--mood-color) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.mood-btn:hover {
+  border-color: var(--mood-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.mood-btn:hover::before { opacity: 0.12; }
+
+.mood-btn--selected {
+  border-color: var(--mood-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mood-color) 35%, transparent),
+              0 8px 24px rgba(0,0,0,0.2);
+}
+.mood-btn--selected::before { opacity: 0.18; }
+
+.mood-btn__emoji {
+  font-size: 2.2rem;
+  transition: transform var(--transition);
+  position: relative;
+}
+.mood-btn:hover .mood-btn__emoji  { transform: scale(1.2) rotate(-5deg); }
+.mood-btn--selected .mood-btn__emoji { transform: scale(1.25); }
+
+.mood-btn__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+  position: relative;
+}
+.mood-btn--selected .mood-btn__label { color: var(--mood-color); }
+
+.mood-btn__check {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.75rem;
+  color: var(--mood-color);
+  font-weight: 700;
+  animation: scaleIn 0.2s ease;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .mood-selector__grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .mood-btn { padding: 14px 8px; gap: 6px; }
+  .mood-btn__emoji { font-size: 1.8rem; }
+  .mood-btn__label { font-size: 0.72rem; }
+}
+
+@media (max-width: 380px) {
+  .mood-selector__grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .mood-btn { padding: 12px 4px; }
+  .mood-btn__emoji { font-size: 1.5rem; }
+  .mood-btn__label { font-size: 0.65rem; }
+}

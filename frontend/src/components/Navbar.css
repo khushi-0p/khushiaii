@@ -1,0 +1,117 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 100;
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(245, 244, 255, 0.75);
+}
+
+.navbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: opacity var(--transition);
+  flex: 1;
+}
+.navbar__logo:hover { opacity: 0.85; }
+
+.navbar__logo-icon {
+  font-size: 1.5rem;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.navbar__logo-text { color: var(--text-primary); }
+
+/* Nav Links */
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.navbar__link {
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+
+.navbar__link:hover {
+  color: var(--text-primary);
+  background: var(--bg-card);
+}
+
+.navbar__link--active {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+/* Actions (Auth + Theme) */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex: 1;
+}
+
+.navbar__auth-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar__user-greeting {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: none; /* hidden on small screens */
+}
+
+/* Small buttons inside navbar */
+.btn-sm {
+  padding: 6px 16px;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .navbar__user-greeting { display: block; }
+}
+
+@media (max-width: 768px) {
+  .navbar__nav { display: none; /* In a real app, you'd add a hamburger menu here */ }
+  .navbar__logo-text { display: none; }
+}
