@@ -39,10 +39,14 @@ export function usePlaylist() {
         trackCount: data.trackCount,
       });
     } catch (err) {
-      const msg =
-        err.response?.data?.error ||
+      // Robust error message extraction
+      const msg = 
+        (typeof err.response?.data?.error === 'string' ? err.response.data.error : null) ||
+        err.response?.data?.error?.message ||
+        err.response?.data?.message ||
         err.message ||
         "Failed to load playlist. Please try again.";
+      
       setError(msg);
       setPlaylist([]);
     } finally {
@@ -59,9 +63,14 @@ export function usePlaylist() {
       const { data } = await axios.post(`${API_BASE}/analyzeMood`, { text });
       return data;
     } catch (err) {
-      throw new Error(
-        err.response?.data?.error || "Mood analysis failed. Please try again."
-      );
+      const msg = 
+        (typeof err.response?.data?.error === 'string' ? err.response.data.error : null) ||
+        err.response?.data?.error?.message ||
+        err.response?.data?.message ||
+        err.message ||
+        "Mood analysis failed. Please try again.";
+      
+      throw new Error(msg);
     }
   }, []);
 

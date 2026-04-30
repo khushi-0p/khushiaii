@@ -98,7 +98,7 @@ export default function Home() {
       {/* Error State */}
       {error && (
         <div className="home__error animate-fadeInUp">
-          <p>⚠️ {error}</p>
+          <p>⚠️ {typeof error === "string" ? error : (error.message || JSON.stringify(error))}</p>
         </div>
       )}
 

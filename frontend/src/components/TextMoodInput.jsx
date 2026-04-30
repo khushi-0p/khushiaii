@@ -78,7 +78,11 @@ export default function TextMoodInput({ onMoodDetected, analyzeMood }) {
       </div>
 
       {/* Error */}
-      {error && <p className="text-mood__error">⚠️ {error}</p>}
+      {error && (
+        <p className="text-mood__error">
+          ⚠️ {typeof error === "string" ? error : (error.message || JSON.stringify(error))}
+        </p>
+      )}
 
       {/* Result badge */}
       {result && (
